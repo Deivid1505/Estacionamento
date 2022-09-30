@@ -1,11 +1,19 @@
-const express = require("express");
+const express = require('express');
+
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
-app.get("/", function(req, res){
-    res.send("Seja bem-vindo ao meu app!");
+const rotas= require('./controller/rotas');
+
+
+app.get('/',(req,res)=>{
+console.log("Seja bem vindo!");
+res.send('Bem vindo!');
 });
 
-app.listen(8081, function(){
- console.log("Servidor Rodando na url http:Localhost:8081");
+app.use('/', rotas);
+
+app.listen(3006, ()=>{
+    console.log('SERVIDOR RODANDO EM: http://localhost:3006');
 });
-//localhost:8081
